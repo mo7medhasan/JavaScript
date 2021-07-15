@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <title>Sign Up</title>
+    <link href="Signup.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Create Account</h2>
+        </div>
+        <form class="form" name="myForm" method="GET" action="../home/project.html">
+            <div class="form_control">
+                <label for="name">UserName</label>
+                <input type="text"class="input" id="name" name="name" value="Enter your Name" onfocus="nameborder()"
+                    onfocusout="removeborder()" onblur="valname()" pattern="^[A-Za-z]{3,20}(( )[A-Za-z]{3,20})*$">
+                <div id="lostfocus" style="font-size: x-large; color: red;"></div>
+            </div>
+            <div class="form_control">
+                <label for="email" name="email">Email</label>
+                <input type="email"class="input" name="email" id="email" onblur="checkEmail()"
+                    pattern="[A-Za-z1-9]{4,20}(@)[A-Za-z]{2,10}(.com)">
+                <div id="chemail" style="font-size:x-large;color: red; "></div>
+            </div>
+            <div class="form_control">
+                <label for="password" name="password">Password</label>
+                <input type="password"class="input" id="password" name="password" pattern="^[A-Za-z1-9]{8,20}">
+                <div id="errorpass" style="font-size:x-large;color: red; "></div>
+            </div>
+            <div class="form_control">
+                <label for="conpassword" class="input"name="conpassword">Confirm Password</label>
+                <input onblur=" checkpass()" Onchange="checkpass()" type="password" id="repassword" name="password"
+                    pattern="^[A-Za-z1-9]{8,20}">
+
+            </div>
+            <div style="margin: 15px;">
+
+                <input type="checkbox" onsubmit="checkForm(form)"class="input" name=" checkbox" value="accept"> <label> I accept the
+                    terms and conditions</label>
+            </div>
+            <div class="form_control">
+                <button id="sumuit" name="sumuit"class="button"> Register </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // check for name
+        var nameuser = document.querySelector("#name");
+        function nameborder() {
+            nameuser.style.border = "solid 2px blue";
+            nameuser.value = "";
+        }
+        
+        document.getElementById("lostfocus").innerHTML = "";
+        document.querySelector("#lostfocus").style.color = "red";
+        var nameuser = document.querySelector("#name");
+
+        function valname() {
+            var nameval = nameuser.value;
+
+            if (nameval.length <= 3) {
+
+                document.getElementById("lostfocus").innerHTML = "invalid name";
+                nameuser.focus();
+                nameuser.select();
+
+            }
+            else {
+                document.getElementById("lostfocus").innerHTML = "";
+
+            }
+
+        }
+
+
+let input = document.querySelectorAll(".input");
+
+
+let button = document.querySelector(".button");
+button.disabled = true;
+input[2].addEventListener("change", stateHandle);
+button.disabled = true;
+function stateHandle() {
+    if(document.querySelectorAll(".input").value === "") {
+        button.disabled = true;
+    } else {
+        button.disabled = false;
+    }
+}
+
+
+
+
+        
+
+
+
+
+
+
+        var pass = document.getElementById("password");
+        var repass = document.getElementById("repassword");
+        var passerror = document.getElementById("errorpass");
+        passerror.innerHTML = "";
+        function checkpass() {
+            if (repass.value != pass.value) {
+                repass.style.background = "gray";
+                passerror.innerHTML = "!password and Confirm Password should be the same";
+                document.getElementById("imgeval").appendChild(imgeinva);
+                document.images.style.width = "200px";
+
+
+            } else {
+                passerror.innerHTML = "";
+                repass.style.background = "white";
+
+
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // نعمل check for email
+
+
+        var email = /^[A-Za-z1-9]{4,20}(@)[A-Za-z]{2,10}(.com)$/;
+
+        var Ema = document.getElementById("email");
+        var eremail = document.getElementById("chemail");
+        function checkEmail() {
+
+            var em = Ema.value;
+            if (email.test(em) != true) {
+
+                eremail.innerHTML = "you Email is not true";
+                var img = document.getElementById("chemail").appendChild(imgeinva);
+                img.style.width = "20px";
+            }
+            else {
+                eremail.innerHTML = "";
+                // alert("your email is true");
+
+                document.getElementById("chemail").innerHTML = "";
+                var img = document.getElementById("chemail").appendChild(imgeva);
+                img.style.width = "20px";
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
